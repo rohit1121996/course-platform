@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@course-platform/api": "*",
     "@tanstack/react-query": "^5.101.2",
     "js-cookie": "^3.0.8",
     "lucide-react": "^1.23.0",

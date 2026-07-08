@@ -24,7 +24,7 @@ export default function PostPage() {
   const { data: post, isLoading, error } = useQuery<Post>({
     queryKey: ["post", postId],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:3001/api/posts/${postId}`, {
+      const res = await fetch(`/api/posts/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

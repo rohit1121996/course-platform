@@ -1,13 +1,13 @@
 export * from "drizzle-orm";
 export * from "./schema";
 
-import { drizzle } from "drizzle-orm/bun-sqlite";
-import { Database } from "bun:sqlite";
-
-import path from "path";
+import { drizzle } from "drizzle-orm/libsql";
+import { createClient } from "@libsql/client";
 import * as schema from "./schema";
 
-const dbPath = path.join(__dirname, '..', 'sqlite.db');
-const sqlite = new Database(dbPath);
-sqlite.run("PRAGMA foreign_keys = ON;");
-export const db = drizzle(sqlite, { schema });
+const client = createClient({
+  url: process.env.DATABASE_URL || "file:./sqlite.db",
+  authToken: process.env.DATABASE_AUTH_TOKEN,
+});
+
+export const db = drizzle(client, { schema });

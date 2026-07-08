@@ -6,9 +6,11 @@ import { postController } from "./controllers/post.controller";
 export const app = new Elysia()
   .use(cors())
   .use(swagger())
-  .use(postController)
-  .listen(3001);
+  .use(postController);
 
-console.log(
-  `🦊 Elysia API is running at ${app.server?.hostname}:${app.server?.port}`
-);
+if (process.env.NODE_ENV !== "production") {
+  app.listen(3001);
+  console.log(
+    `🦊 Elysia API is running at ${app.server?.hostname}:${app.server?.port}`
+  );
+}

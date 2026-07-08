@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 
-const API_URL = "http://localhost:3001/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export interface Post {
   id: string;

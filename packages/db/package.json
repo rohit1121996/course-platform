@@ -9,6 +9,7 @@
     "seed": "bun run src/seed.ts"
   },
   "dependencies": {
+    "@libsql/client": "^0.17.4",
     "drizzle-orm": "^0.45.2",
     "uuid": "^14.0.1"
   },
