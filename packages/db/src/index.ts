@@ -79,6 +79,30 @@ CREATE TABLE IF NOT EXISTS \`saved_posts\` (
 	FOREIGN KEY (\`post_id\`) REFERENCES \`posts\`(\`id\`) ON UPDATE no action ON DELETE cascade
 );
 CREATE UNIQUE INDEX IF NOT EXISTS \`user_id_post_id_idx\` ON \`saved_posts\` (\`user_id\`,\`post_id\`);
+
+INSERT OR IGNORE INTO \`courses\` (\`id\`, \`title\`) VALUES 
+('course-1', 'Advanced Next.js Architecture'),
+('course-2', 'PostgreSQL Database Design');
+
+INSERT OR IGNORE INTO \`users\` (\`id\`, \`name\`, \`role\`) VALUES 
+('user-1', 'Alice Student', 'STUDENT'),
+('user-2', 'Bob Learner', 'STUDENT'),
+('user-3', 'Charlie Scholar', 'STUDENT'),
+('user-4', 'Diana Freshman', 'STUDENT'),
+('user-5', 'Eve Instructor', 'MODERATOR'),
+('user-6', 'Moderator Mike', 'MODERATOR');
+
+INSERT OR IGNORE INTO \`enrollments\` (\`id\`, \`user_id\`, \`course_id\`) VALUES 
+('enr-1', 'user-1', 'course-1'),
+('enr-2', 'user-2', 'course-1'),
+('enr-3', 'user-3', 'course-2'),
+('enr-4', 'user-4', 'course-2'),
+('enr-5', 'user-1', 'course-2');
+
+INSERT OR IGNORE INTO \`posts\` (\`id\`, \`course_id\`, \`author_id\`, \`title\`, \`content\`) VALUES 
+('post-1', 'course-1', 'user-5', 'Next.js Topic 1', 'This is the content for Next.js topic 1.'),
+('post-2', 'course-1', 'user-5', 'Next.js Topic 2', 'This is the content for Next.js topic 2.'),
+('post-3', 'course-2', 'user-5', 'PostgreSQL Topic 1', 'This is the content for PostgreSQL topic 1.');
 `;
   client.executeMultiple(schemaSql).catch(console.error);
 }
