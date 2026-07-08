@@ -103,6 +103,21 @@ INSERT OR IGNORE INTO \`posts\` (\`id\`, \`course_id\`, \`author_id\`, \`title\`
 ('post-1', 'course-1', 'user-5', 'Next.js Topic 1', 'This is the content for Next.js topic 1.'),
 ('post-2', 'course-1', 'user-5', 'Next.js Topic 2', 'This is the content for Next.js topic 2.'),
 ('post-3', 'course-2', 'user-5', 'PostgreSQL Topic 1', 'This is the content for PostgreSQL topic 1.');
+
+INSERT OR IGNORE INTO \`comments\` (\`id\`, \`post_id\`, \`author_id\`, \`content\`) VALUES 
+('comment-1', 'post-1', 'user-1', 'Great post! Thanks for sharing.'),
+('comment-2', 'post-1', 'user-2', 'I have a question about this.'),
+('comment-3', 'post-2', 'user-3', 'Very insightful.');
+
+INSERT OR IGNORE INTO \`likes\` (\`id\`, \`user_id\`, \`post_id\`) VALUES 
+('like-1', 'user-1', 'post-1'),
+('like-2', 'user-2', 'post-1'),
+('like-3', 'user-3', 'post-2');
+
+INSERT OR IGNORE INTO \`saved_posts\` (\`id\`, \`user_id\`, \`post_id\`) VALUES 
+('saved-1', 'user-1', 'post-1'),
+('saved-2', 'user-1', 'post-2'),
+('saved-3', 'user-2', 'post-1');
 `;
   client.executeMultiple(schemaSql).catch(console.error);
 }
