@@ -1,0 +1,69 @@
+
+  static async createPost(userId: string, courseId: string, title: string, content: string) {
+    const enrollment = await db.query.enrollments.findFirst({
+      where: and(
+        eq(enrollments.userId, userId),
+        eq(enrollments.courseId, courseId)
+      )
+    });
+    if (!enrollment) throw new Error("Forbidden: Not enrolled in course");
+
+    const [post] = await db.insert(posts).values({
+      authorId: userId,
+      courseId,
+      title,
+      content,
+    }).returning();
+    return post;
+  }
+
+  static async likePost(userId: string, postId: string) {
+    await db.insert(likes).values({
+      userId,
+      postId,
+    }).onConflictDoNothing();
+    return { success: true };
+  }
+
+  static async unlikePost(userId: string, postId: string) {
+    await db.delete(likes).where(
+      and(
+        eq(likes.userId, userId),
+        eq(likes.postId, postId)
+      )
+    );
+    return { success: true };
+  }
+
+  static async getComments(postId: string) {
+    const results = await db.select({
+      id: comments.id,
+      postId: comments.postId,
+      authorId: comments.authorId,
+      content: comments.content,
+      createdAt: comments.createdAt,
+    }).from(comments).where(eq(comments.postId, postId)).orderBy(comments.createdAt);
+    return results;
+  }
+
+  static async addComment(userId: string, postId: string, content: string) {
+    const post = await db.query.posts.findFirst({
+      where: eq(posts.id, postId),
+    });
+    if (!post) throw new Error("Post not found");
+
+    const enrollment = await db.query.enrollments.findFirst({
+      where: and(
+        eq(enrollments.userId, userId),
+        eq(enrollments.courseId, post.courseId)
+      )
+    });
+    if (!enrollment) throw new Error("Forbidden: Not enrolled in course");
+
+    const [comment] = await db.insert(comments).values({
+      authorId: userId,
+      postId,
+      content,
+    }).returning();
+    return comment;
+  }

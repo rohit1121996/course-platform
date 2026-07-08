@@ -1,0 +1,22 @@
+{
+  "name": "@course-platform/db",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "generate": "drizzle-kit generate",
+    "push": "drizzle-kit push",
+    "seed": "bun run src/seed.ts"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.2",
+    "uuid": "^14.0.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/uuid": "^10.0.0",
+    "drizzle-kit": "^0.31.10",
+    "tsx": "^4.10.0",
+    "typescript": "^5.4.5"
+  }
+}

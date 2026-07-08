@@ -1,0 +1,22 @@
+{
+  "name": "course-platform",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w apps/api",
+    "dev:web": "npm run dev -w apps/web",
+    "db:generate": "npm run generate -w @course-platform/db",
+    "db:push": "npm run push -w @course-platform/db",
+    "db:seed": "npm run seed -w @course-platform/db",
+    "test:api": "npm run test -w apps/api",
+    "test:e2e": "npm run test:e2e -w apps/web"
+  },
+  "dependencies": {
+    "bun": "^1.3.14",
+    "drizzle-orm": "^0.45.2"
+  }
+}
