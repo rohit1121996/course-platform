@@ -16,7 +16,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/users")
+    fetch("/api/users")
       .then(res => res.json())
       .then(data => {
         setUsers(data);
