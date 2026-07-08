@@ -38,7 +38,7 @@ export default function PostPage() {
     refetchInterval: 5000,
   });
 
-  const { data: saveHistory, isLoading: isLoadingHistory } = useSaveHistory(postId);
+  const { data: saveHistory } = useSaveHistory(postId);
 
   return (
     <main className="max-w-3xl mx-auto p-8">

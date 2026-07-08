@@ -134,7 +134,7 @@ export function useSavePostMutation() {
       const previousPost = queryClient.getQueryData(["post", postId]);
 
       // Optimistically update
-      const updateData = (old: any) => {
+      const updateData = (old: { data: Post[] } | undefined) => {
         if (!old || !old.data) return old;
         return {
           ...old,
@@ -185,7 +185,7 @@ export function useUnsavePostMutation() {
       const previousPost = queryClient.getQueryData(["post", postId]);
 
       // Optimistically update
-      const updateData = (old: any) => {
+      const updateData = (old: { data: Post[] } | undefined) => {
         if (!old || !old.data) return old;
         return {
           ...old,
@@ -235,7 +235,7 @@ export function useLikePostMutation() {
       await queryClient.cancelQueries({ queryKey: ["posts"] });
       await queryClient.cancelQueries({ queryKey: ["savedPosts"] });
 
-      const updateData = (old: any) => {
+      const updateData = (old: { data: Post[] } | undefined) => {
         if (!old || !old.data) return old;
         return {
           ...old,
@@ -269,7 +269,7 @@ export function useUnlikePostMutation() {
       await queryClient.cancelQueries({ queryKey: ["posts"] });
       await queryClient.cancelQueries({ queryKey: ["savedPosts"] });
 
-      const updateData = (old: any) => {
+      const updateData = (old: { data: Post[] } | undefined) => {
         if (!old || !old.data) return old;
         return {
           ...old,
