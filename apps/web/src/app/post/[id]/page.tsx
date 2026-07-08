@@ -43,7 +43,7 @@ export default function PostPage() {
   return (
     <main className="max-w-3xl mx-auto p-8">
       <div className="space-y-6">
-        <Link 
+        <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm font-medium text-gray-900 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition-colors w-fit"
         >
@@ -56,15 +56,15 @@ export default function PostPage() {
             <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
           </div>
         ) : error || !post ? (
-        <div className="bg-red-50 text-red-600 p-6 rounded-xl text-center">
-          <p className="font-medium">{t("postNotFound")}</p>
-        </div>
-      ) : (
+          <div className="bg-red-50 text-red-600 p-6 rounded-xl text-center">
+            <p className="font-medium">{t("postNotFound")}</p>
+          </div>
+        ) : (
           <>
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
               <PostCard post={post} initialShowComments={true} />
             </div>
-            
+
             {saveHistory && saveHistory.length > 0 && (
               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden p-6 mt-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">{t("saveHistory")}</h3>
